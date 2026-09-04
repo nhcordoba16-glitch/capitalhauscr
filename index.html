@@ -12221,6 +12221,29 @@ const provinciaMap = {
   'limon': []
 };
 
+// Calcula y muestra el conteo REAL de propiedades por provincia (evita desincronización manual)
+function actualizarConteoProvinciasIdioma(lang){
+  var provincias = ['sanjose','alajuela','cartago','heredia','puntarenas','guanacaste','limon'];
+  provincias.forEach(function(prov){
+    var ids = provinciaMap[prov] || [];
+    var count = 0;
+    ids.forEach(function(id){
+      if(document.getElementById(id)) count++;
+    });
+    var el = document.getElementById('count-' + prov);
+    if(!el) return;
+    if(count === 0){
+      el.textContent = lang === 'en' ? 'Coming soon' : 'Próximamente';
+    } else if(count === 1){
+      el.textContent = lang === 'en' ? '1 available property' : '1 propiedad disponible';
+    } else {
+      el.textContent = lang === 'en' ? (count + ' available properties') : (count + ' propiedades disponibles');
+    }
+  });
+}
+function actualizarConteoProvincias(){ actualizarConteoProvinciasIdioma('es'); }
+actualizarConteoProvincias();
+
 let activeProvincia = null;
 
 function filtrarProvincia(provincia, cardEl) {
@@ -12288,26 +12311,14 @@ function translateProvincias(lang) {
     if(el('prov-tag')) el('prov-tag').textContent = 'Explore by Area';
     if(el('prov-title')) el('prov-title').innerHTML = 'Properties by <span style="color:var(--gold)">Province</span>';
     if(el('prov-sub')) el('prov-sub').textContent = 'Select a province to filter available properties';
-    if(el('count-sanjose')) el('count-sanjose').textContent = '20 available properties';
-    if(el('count-alajuela')) el('count-alajuela').textContent = '3 available properties';
-    if(el('count-cartago')) el('count-cartago').textContent = '34 available properties';
-    if(el('count-heredia')) el('count-heredia').textContent = '3 available properties';
-    if(el('count-puntarenas')) el('count-puntarenas').textContent = '3 available properties';
-    if(el('count-guanacaste')) el('count-guanacaste').textContent = 'Coming soon';
-    if(el('count-limon')) el('count-limon').textContent = 'Coming soon';
+    actualizarConteoProvinciasIdioma('en');
     if(el('resetProvBtn')) el('resetProvBtn').textContent = '✕ View all provinces';
     document.querySelectorAll('.provincia-btn').forEach(b => b.textContent = 'View properties →');
   } else {
     if(el('prov-tag')) el('prov-tag').textContent = 'Explorar por Zona';
     if(el('prov-title')) el('prov-title').innerHTML = 'Propiedades por <span style="color:var(--gold)">Provincia</span>';
     if(el('prov-sub')) el('prov-sub').textContent = 'Seleccioná una provincia para filtrar las propiedades disponibles';
-    if(el('count-sanjose')) el('count-sanjose').textContent = '20 propiedades disponibles';
-    if(el('count-alajuela')) el('count-alajuela').textContent = '3 propiedades disponibles';
-    if(el('count-cartago')) el('count-cartago').textContent = '34 propiedades disponibles';
-    if(el('count-heredia')) el('count-heredia').textContent = '3 propiedades disponibles';
-    if(el('count-puntarenas')) el('count-puntarenas').textContent = '3 propiedades disponibles';
-    if(el('count-guanacaste')) el('count-guanacaste').textContent = 'Próximamente';
-    if(el('count-limon')) el('count-limon').textContent = 'Próximamente';
+    actualizarConteoProvinciasIdioma('es');
     if(el('resetProvBtn')) el('resetProvBtn').textContent = '✕ Ver todas las provincias';
     document.querySelectorAll('.provincia-btn').forEach(b => b.textContent = 'Ver propiedades →');
   }
