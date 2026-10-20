@@ -3,8 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CapitalHaus | Bienes Raíces Costa Rica</title>
-<meta name="description" content="CapitalHaus Costa Rica – Compra, venta y alquiler de propiedades en la Gran Área Metropolitana. Asesoría personalizada de bienes raíces.">
+<title>CapitalHaus Costa Rica | Alquiler y Venta de Propiedades</title>
+<meta name="description" content="Casas, apartamentos y locales comerciales en alquiler y venta en Cartago, San José, Heredia y más. Asesoría personalizada y administración de propiedades en Costa Rica.">
+<link rel="canonical" href="https://capitalhauscr.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230D1B2A'/%3E%3Crect x='14' y='14' width='9' height='36' fill='%23D4AF37'/%3E%3Crect x='41' y='14' width='9' height='36' fill='%23D4AF37'/%3E%3Crect x='14' y='27.5' width='36' height='9' fill='%23D4AF37'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0D1B2A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CapitalHaus Costa Rica">
+<meta property="og:title" content="CapitalHaus Costa Rica | Alquiler y Venta de Propiedades">
+<meta property="og:description" content="Casas, apartamentos y locales comerciales en alquiler y venta en Cartago, San José, Heredia y más. Asesoría personalizada y administración de propiedades en Costa Rica.">
+<meta property="og:url" content="https://capitalhauscr.com/">
+<meta property="og:image" content="https://capitalhauscr.com/images/Dise%C3%B1o_sin_t%C3%ADtulo_32_mk6vnz.png">
+<meta property="og:locale" content="es_CR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CapitalHaus Costa Rica | Alquiler y Venta de Propiedades">
+<meta name="twitter:description" content="Casas, apartamentos y locales comerciales en alquiler y venta en Cartago, San José, Heredia y más. Asesoría personalizada y administración de propiedades en Costa Rica.">
+<meta name="twitter:image" content="https://capitalhauscr.com/images/Dise%C3%B1o_sin_t%C3%ADtulo_32_mk6vnz.png">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"RealEstateAgent",
+  "name":"CapitalHaus Costa Rica",
+  "url":"https://capitalhauscr.com/",
+  "description":"Alquiler, venta y administración de propiedades en Costa Rica: casas, apartamentos y locales comerciales.",
+  "telephone":"+506-7120-2777",
+  "email":"info@capitalhauscr.com",
+  "areaServed":[{"@type":"AdministrativeArea","name":"Cartago"},{"@type":"AdministrativeArea","name":"San José"},{"@type":"AdministrativeArea","name":"Heredia"},{"@type":"AdministrativeArea","name":"Alajuela"},{"@type":"AdministrativeArea","name":"Puntarenas"}],
+  "address":{"@type":"PostalAddress","addressCountry":"CR"},
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}
+  ],
+  "knowsLanguage":["es","en"]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -276,6 +309,23 @@
     border-color: rgba(212,175,55,.6) !important;
     color: #D4AF37 !important;
   }
+  /* --- Alquiladas ocultas por defecto --- */
+  #propsGrid.hide-rented .prop-card.no-disponible{display:none !important}
+  .rented-toggle{padding:8px 20px;border-radius:20px;border:1px dashed rgba(0,0,0,.3);background:transparent;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;color:var(--gray);margin-left:auto;font-family:inherit}
+  .rented-toggle:hover{border-color:var(--navy);color:var(--navy)}
+  @media(max-width:600px){.rented-toggle{margin-left:0;font-size:11px;padding:7px 14px}}
+  /* --- Enlaces legales y modales --- */
+  .footer-legal{display:flex;gap:1.25rem;flex-wrap:wrap}
+  .footer-legal a{font-size:.78rem;color:rgba(255,255,255,.4);text-decoration:none;cursor:pointer;transition:color .2s}
+  .footer-legal a:hover{color:var(--gold)}
+  .legal-body h2{font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+  .legal-body .legal-date{font-size:.75rem;color:var(--gray);margin-bottom:1rem}
+  .legal-body h3{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);margin:1.4rem 0 .5rem}
+  .legal-body p,.legal-body li{font-size:.86rem;line-height:1.7;color:#444}
+  .legal-body ul{padding-left:1.2rem;margin:.4rem 0}
+  .legal-en{display:none}
+  html[data-lang="en"] .legal-es{display:none}
+  html[data-lang="en"] .legal-en{display:block}
   .prop-card.no-disponible { opacity: 0.88; }
   .prop-card.no-disponible .prop-img-wrap::after {
     content: '';
@@ -5529,8 +5579,9 @@
       <button class="filter-btn" onclick="filterProps(this,'alquiler')" id="filterAlquiler">Alquiler</button>
       <button class="filter-btn" onclick="filterProps(this,'venta')" id="filterVenta">Venta</button>
       <button class="filter-btn" onclick="filterProps(this,'comercial')" id="filterComercial">Comercial</button>
+      <button class="rented-toggle" id="rentedToggle" onclick="toggleRented()" type="button">Ver no disponibles</button>
     </div>
-    <div class="props-grid" id="propsGrid">
+    <div class="props-grid hide-rented" id="propsGrid">
       <div class="no-results-msg" id="noResultsMsg">
         <strong>Sin resultados</strong>
         No encontramos propiedades con esos criterios. Intentá con otra búsqueda o <a href="#" onclick="clearSearch();return false;" style="color:var(--gold)">limpiá los filtros</a>.
@@ -9859,6 +9910,35 @@
 </section>
 
 <!-- ========== FOOTER ========== -->
+<!-- ========== PÁGINAS LEGALES ========== -->
+<div class="modal-overlay legal-overlay" id="legalPrivacidad" onclick="if(event.target===this)closeLegal('legalPrivacidad')">
+  <div class="modal" style="max-width:720px">
+    <button class="modal-close" onclick="closeLegal('legalPrivacidad')">✕</button>
+    <div class="modal-body legal-body">
+      <div class="legal-es"><h2>Política de Privacidad</h2><div class="legal-date">Última actualización: octubre 2026</div><h3>Quiénes somos</h3><p>CapitalHaus Costa Rica es una inmobiliaria dedicada al alquiler, la venta y la administración de propiedades. Esta política explica cómo tratamos los datos personales de quienes visitan capitalhauscr.com o nos contactan, conforme a la Ley N.° 8968 de Protección de la Persona frente al tratamiento de sus datos personales.</p><h3>Qué datos recopilamos</h3><ul><li>Los que nos das voluntariamente al escribirnos por WhatsApp, correo o el formulario del sitio: nombre, teléfono, correo y el contenido de tu mensaje.</li><li>Datos técnicos de navegación mediante el Píxel de Meta (por ejemplo, páginas vistas y clics en botones de contacto), que se asocian a identificadores del navegador y no a tu nombre.</li></ul><h3>Para qué los usamos</h3><ul><li>Responder tus consultas y coordinar visitas.</li><li>Ofrecerte propiedades acordes a lo que buscás.</li><li>Medir y mejorar nuestra publicidad en Meta (Facebook e Instagram).</li></ul><h3>Formulario de contacto</h3><p>El botón "Enviar por WhatsApp" abre WhatsApp con tu mensaje ya escrito. Este sitio no guarda en servidores propios lo que escribís en el formulario; desde que lo enviás, la conversación queda sujeta a las políticas de WhatsApp/Meta.</p><h3>Con quién se comparten</h3><p>No vendemos tus datos. Pueden tratarlos proveedores que hacen funcionar el sitio y nuestra publicidad: Meta (Píxel de Meta y WhatsApp), Google (tipografías y mapas, cuando abrís un enlace de Google Maps) y el servicio donde se aloja el sitio.</p><h3>Conservación</h3><p>Guardamos tus datos solo el tiempo necesario para atender tu consulta o la relación comercial, y por el plazo que exija la ley.</p><h3>Tus derechos</h3><p>Podés solicitar acceso, rectificación, supresión de tus datos, y oponerte a su tratamiento o revocar tu consentimiento. Podés escribirnos a <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> o por WhatsApp al +506 7120-2777. Si considerás que tus derechos no fueron atendidos, podés acudir a la Agencia de Protección de Datos de los Habitantes (PRODHAB).</p><h3>Cambios a esta política</h3><p>Podemos actualizarla; la versión vigente siempre estará en esta página.</p></div>
+      <div class="legal-en"><h2>Privacy Policy</h2><div class="legal-date">Last updated: October 2026</div><h3>Who we are</h3><p>CapitalHaus Costa Rica is a real estate company dedicated to renting, selling and managing properties. This policy explains how we handle the personal data of people who visit capitalhauscr.com or contact us, in line with Costa Rican Law No. 8968 on the Protection of Individuals regarding the Processing of Personal Data.</p><h3>What data we collect</h3><ul><li>What you voluntarily provide when you write to us by WhatsApp, email or the site form: name, phone, email and the content of your message.</li><li>Technical browsing data through the Meta Pixel (for example, pages viewed and clicks on contact buttons), tied to browser identifiers rather than your name.</li></ul><h3>How we use it</h3><ul><li>To answer your questions and schedule visits.</li><li>To offer you properties that match what you are looking for.</li><li>To measure and improve our advertising on Meta (Facebook and Instagram).</li></ul><h3>Contact form</h3><p>The "Send via WhatsApp" button opens WhatsApp with your message already written. This site does not store what you type in the form on its own servers; once you send it, the conversation is subject to WhatsApp/Meta policies.</p><h3>Who we share it with</h3><p>We do not sell your data. It may be processed by providers that run the site and our advertising: Meta (Meta Pixel and WhatsApp), Google (fonts and maps, when you open a Google Maps link) and the service that hosts the site.</p><h3>Retention</h3><p>We keep your data only as long as needed to handle your inquiry or business relationship, and for any period required by law.</p><h3>Your rights</h3><p>You may request access, correction or deletion of your data, and object to its processing or withdraw your consent. You can write to us at <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> or on WhatsApp at +506 7120-2777. If you believe your rights have not been respected, you may go to the Costa Rican data protection agency (PRODHAB).</p><h3>Changes to this policy</h3><p>We may update it; the current version will always be on this page.</p></div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay legal-overlay" id="legalTerminos" onclick="if(event.target===this)closeLegal('legalTerminos')">
+  <div class="modal" style="max-width:720px">
+    <button class="modal-close" onclick="closeLegal('legalTerminos')">✕</button>
+    <div class="modal-body legal-body">
+      <div class="legal-es"><h2>Términos de Uso</h2><div class="legal-date">Última actualización: octubre 2026</div><h3>Aceptación</h3><p>Al usar capitalhauscr.com aceptás estos términos. Si no estás de acuerdo, te pedimos no usar el sitio.</p><h3>Información de las propiedades</h3><p>Las fotografías, descripciones, medidas, precios y amenidades son referenciales y pueden cambiar sin previo aviso. La disponibilidad no está garantizada hasta confirmarla con un asesor de CapitalHaus. Nada en este sitio constituye una oferta vinculante.</p><h3>Precios</h3><p>Los precios se muestran en colones (₡) o dólares ($) según cada propiedad. Los montos de alquiler pueden no incluir depósito de garantía, servicios o IVA cuando así se indique en la ficha.</p><h3>Contratos y gestiones</h3><p>Cualquier alquiler, venta o servicio se formaliza por escrito entre las partes. Una consulta por WhatsApp o por el formulario no genera obligación de contratar.</p><h3>Propiedad intelectual</h3><p>Los textos, diseño, logotipos e imágenes del sitio pertenecen a CapitalHaus Costa Rica o se usan con autorización. No pueden copiarse ni reutilizarse con fines comerciales sin permiso escrito.</p><h3>Enlaces de terceros</h3><p>El sitio enlaza a servicios como WhatsApp y Google Maps. No controlamos su contenido ni sus políticas.</p><h3>Limitación de responsabilidad</h3><p>Hacemos lo posible por mantener la información actualizada, pero no garantizamos que esté libre de errores. CapitalHaus no será responsable por decisiones tomadas únicamente con base en lo publicado en el sitio.</p><h3>Ley aplicable</h3><p>Estos términos se rigen por las leyes de la República de Costa Rica.</p><h3>Contacto</h3><p>Podés escribirnos a <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> o por WhatsApp al +506 7120-2777.</p></div>
+      <div class="legal-en"><h2>Terms of Use</h2><div class="legal-date">Last updated: October 2026</div><h3>Acceptance</h3><p>By using capitalhauscr.com you accept these terms. If you do not agree, please do not use the site.</p><h3>Property information</h3><p>Photos, descriptions, measurements, prices and amenities are for reference and may change without notice. Availability is not guaranteed until confirmed with a CapitalHaus advisor. Nothing on this site constitutes a binding offer.</p><h3>Prices</h3><p>Prices are shown in colones (₡) or US dollars ($) depending on the property. Rental amounts may not include a security deposit, utilities or VAT when so indicated in the listing.</p><h3>Contracts and transactions</h3><p>Any rental, sale or service is formalized in writing between the parties. An inquiry by WhatsApp or through the form does not create an obligation to contract.</p><h3>Intellectual property</h3><p>The texts, design, logos and images on this site belong to CapitalHaus Costa Rica or are used with permission. They may not be copied or reused for commercial purposes without written permission.</p><h3>Third-party links</h3><p>The site links to services such as WhatsApp and Google Maps. We do not control their content or policies.</p><h3>Limitation of liability</h3><p>We do our best to keep information current, but we do not guarantee it is free of errors. CapitalHaus is not liable for decisions made solely on the basis of what is published on the site.</p><h3>Governing law</h3><p>These terms are governed by the laws of the Republic of Costa Rica.</p><h3>Contact</h3><p>You can write to us at <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> or on WhatsApp at +506 7120-2777.</p></div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay legal-overlay" id="legalCookies" onclick="if(event.target===this)closeLegal('legalCookies')">
+  <div class="modal" style="max-width:720px">
+    <button class="modal-close" onclick="closeLegal('legalCookies')">✕</button>
+    <div class="modal-body legal-body">
+      <div class="legal-es"><h2>Política de Cookies</h2><div class="legal-date">Última actualización: octubre 2026</div><h3>Qué son</h3><p>Las cookies son pequeños archivos que el navegador guarda cuando visitás un sitio. Sirven, por ejemplo, para recordar preferencias o medir la efectividad de la publicidad.</p><h3>Cuáles usamos</h3><ul><li><strong>Píxel de Meta (cookies como _fbp):</strong> nos permite medir cuántas personas llegan desde nuestros anuncios en Facebook e Instagram y qué acciones realizan (por ejemplo, abrir WhatsApp).</li><li><strong>Servicios de Google:</strong> las tipografías se cargan desde Google Fonts, y Google Maps puede registrar datos de navegación cuando abrís un enlace de mapa.</li></ul><h3>Lo que no hacemos</h3><p>Este sitio no usa cookies propias de analítica ni guarda tus preferencias (como el idioma) en cookies.</p><h3>Cómo desactivarlas</h3><p>Podés bloquear o borrar cookies desde la configuración de tu navegador, y gestionar los anuncios personalizados de Meta desde la configuración de tu cuenta de Facebook o Instagram. Si las bloqueás, el sitio sigue funcionando con normalidad.</p><h3>Contacto</h3><p>Podés escribirnos a <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> o por WhatsApp al +506 7120-2777.</p></div>
+      <div class="legal-en"><h2>Cookie Policy</h2><div class="legal-date">Last updated: October 2026</div><h3>What they are</h3><p>Cookies are small files your browser stores when you visit a site. They are used, for example, to remember preferences or to measure advertising effectiveness.</p><h3>Which ones we use</h3><ul><li><strong>Meta Pixel (cookies such as _fbp):</strong> lets us measure how many people arrive from our Facebook and Instagram ads and what actions they take (for example, opening WhatsApp).</li><li><strong>Google services:</strong> fonts are loaded from Google Fonts, and Google Maps may record browsing data when you open a map link.</li></ul><h3>What we do not do</h3><p>This site does not use its own analytics cookies and does not store your preferences (such as language) in cookies.</p><h3>How to disable them</h3><p>You can block or delete cookies in your browser settings, and manage Meta personalized ads from your Facebook or Instagram account settings. If you block them, the site keeps working normally.</p><h3>Contact</h3><p>You can write to us at <a href="mailto:info@capitalhauscr.com" style="color:var(--gold2)">info@capitalhauscr.com</a> or on WhatsApp at +506 7120-2777.</p></div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -9885,7 +9965,12 @@
       <div class="footer-col"><h4>Contacto</h4><ul><li><a href="https://wa.me/50671202777">WhatsApp</a></li><li><a href="mailto:info@capitalhauscr.com">Email</a></li><li><a href="#">capitalhauscr.com</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 CapitalHaus Costa Rica. Todos los derechos reservados.</p>
+      <p>© 2026 CapitalHaus Costa Rica. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a onclick="openLegal('legalPrivacidad')" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+        <a onclick="openLegal('legalTerminos')" data-es="Términos de uso" data-en="Terms of use">Términos de uso</a>
+        <a onclick="openLegal('legalCookies')" data-es="Cookies" data-en="Cookies">Cookies</a>
+      </div>
       <span class="footer-tagline">Más que propiedades, oportunidades</span>
     </div>
   </div>
@@ -10266,7 +10351,7 @@ const i18n = {
     "footer-brand": "Más que propiedades, oportunidades. Tu asesor de bienes raíces de confianza en Costa Rica.",
     "footer-serv": "Servicios", "footer-comp": "Compañía", "footer-contact": "Contacto",
     "footer-tagline": "Más que propiedades, oportunidades",
-    "footer-rights": "© 2025 CapitalHaus Costa Rica. Todos los derechos reservados.",
+    "footer-rights": "© 2026 CapitalHaus Costa Rica. Todos los derechos reservados.",
     // WA
     "wa-tooltip": "💬 Chateá con nosotros",
     // MODALES
@@ -10480,7 +10565,7 @@ const i18n = {
     "footer-brand": "More than properties, opportunities. Your trusted real estate advisor in Costa Rica.",
     "footer-serv": "Services", "footer-comp": "Company", "footer-contact": "Contact",
     "footer-tagline": "More than properties, opportunities",
-    "footer-rights": "© 2025 CapitalHaus Costa Rica. All rights reserved.",
+    "footer-rights": "© 2026 CapitalHaus Costa Rica. All rights reserved.",
     // WA
     "wa-tooltip": "💬 Chat with us",
     // MODALES
@@ -13059,7 +13144,8 @@ function actualizarConteoProvinciasIdioma(lang){
     var ids = provinciaMap[prov] || [];
     var count = 0;
     ids.forEach(function(id){
-      if(document.getElementById(id)) count++;
+      var _el = document.getElementById(id);
+      if(_el && !_el.classList.contains('no-disponible')) count++;
     });
     var el = document.getElementById('count-' + prov);
     if(!el) return;
@@ -13075,6 +13161,55 @@ function actualizarConteoProvinciasIdioma(lang){
 function actualizarConteoProvincias(){ actualizarConteoProvinciasIdioma('es'); }
 actualizarConteoProvincias();
 
+/* ===== Disponibilidad: ocultar no disponibles por defecto ===== */
+var chShowRented = false;
+function chAvailableCount(){ return document.querySelectorAll('#propsGrid .prop-card:not(.no-disponible)').length; }
+function chRentedCount(){ return document.querySelectorAll('#propsGrid .prop-card.no-disponible').length; }
+function chProvAvailable(prov){
+  var n = 0;
+  (provinciaMap[prov] || []).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && !el.classList.contains('no-disponible')) n++;
+  });
+  return n;
+}
+function chProvsWithAvailable(){
+  return ['sanjose','alajuela','cartago','heredia','puntarenas','guanacaste','limon'].filter(function(p){ return chProvAvailable(p) > 0; }).length;
+}
+function updateRentedToggle(){
+  var b = document.getElementById('rentedToggle'); if(!b) return;
+  var n = chRentedCount();
+  var en = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  if(n === 0){ b.style.display = 'none'; return; }
+  b.style.display = '';
+  b.textContent = chShowRented ? (en ? 'Hide unavailable' : 'Ocultar no disponibles')
+                               : (en ? 'Show unavailable (' + n + ')' : 'Ver no disponibles (' + n + ')');
+}
+function toggleRented(){
+  chShowRented = !chShowRented;
+  var g = document.getElementById('propsGrid');
+  if(g) g.classList.toggle('hide-rented', !chShowRented);
+  updateRentedToggle();
+  var sc = document.getElementById('searchCount');
+  if(sc && sc.style.display === 'block' && window.runSearch) window.runSearch();
+}
+updateRentedToggle();
+(function(){
+  var _al = applyLang;
+  applyLang = function(lang){
+    _al(lang);
+    document.documentElement.setAttribute('data-lang', lang);
+    updateRentedToggle();
+  };
+})();
+
+/* ===== Páginas legales (modales) ===== */
+function openLegal(id){ var m=document.getElementById(id); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; m.scrollTop=0; var b=m.querySelector('.modal'); if(b) b.scrollTop=0; } }
+function closeLegal(id){ var m=document.getElementById(id); if(m){ m.classList.remove('open'); document.body.style.overflow=''; } }
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ document.querySelectorAll('.legal-overlay.open').forEach(function(m){ closeLegal(m.id); }); }
+});
+
 let activeProvincia = null;
 
 function filtrarProvincia(provincia, cardEl) {
@@ -13086,7 +13221,7 @@ function filtrarProvincia(provincia, cardEl) {
 
   // Provincia sin propiedades aún: mostrar aviso y no vaciar la galería
   const propIdsCheck = provinciaMap[provincia] || [];
-  if (propIdsCheck.length === 0) {
+  if (chProvAvailable(provincia) === 0 && !chShowRented) {
     const toast = document.createElement('div');
     toast.textContent = currentLang === 'en' ? '✨ New properties in this province coming soon' : '✨ Próximamente nuevas propiedades en esta provincia';
     toast.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#0D1B2A;color:#D4AF37;padding:12px 24px;border-radius:4px;font-weight:700;font-size:14px;z-index:9999;letter-spacing:1px;box-shadow:0 4px 15px rgba(0,0,0,0.3);white-space:nowrap;border:1px solid rgba(212,175,55,0.4)';
@@ -13172,6 +13307,7 @@ function translateProvincias(lang) {
   var clearBtn = document.getElementById('clearBtn');
   if (clearBtn) clearBtn.textContent = lang==='en' ? '✕ Clear' : '✕ Limpiar';
 
+  var t = i18n[lang] || {};
   var ownerTxtIds = ['owner-badge','owner-intro','owner-step1-title','owner-step1-desc',
     'owner-step2-title','owner-step2-desc','owner-step3-title','owner-step3-desc',
     'owner-card-sub','owner-perk1','owner-perk2','owner-perk3','owner-perk4','owner-perk5',
@@ -13709,8 +13845,8 @@ document.querySelectorAll('#modalP75 .modal-gallery img').forEach((img, i) => {
     var props = document.getElementById('stat-props');
     var provs = document.getElementById('stat-provs');
     var lang  = document.getElementById('stat-lang');
-    if (props) animateCount(props, 0, 30, '+', 1400);
-    if (provs) { setTimeout(function(){ animateCount(provs, 0, 5, '', 900); }, 300); }
+    if (props) animateCount(props, 0, chAvailableCount(), '', 1400);
+    if (provs) { setTimeout(function(){ animateCount(provs, 0, chProvsWithAvailable(), '', 900); }, 300); }
     if (lang)  { setTimeout(function(){ animateLang(lang); }, 700); }
   }
 
@@ -13843,7 +13979,7 @@ document.querySelectorAll('#modalP75 .modal-gallery img').forEach((img, i) => {
 
       var show = matchQuery && matchTipo && matchProv && matchPrec;
       card.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (show && !(card.classList.contains('no-disponible') && document.getElementById('propsGrid').classList.contains('hide-rented'))) visible++;
     });
 
     // Contador de resultados
